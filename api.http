@@ -1,0 +1,10 @@
+POST http://localhost:7071/api/autocommit
+Content-Type: application/json
+
+{
+    "account": "lbugnion",
+    "repo": "tests-auto-commit",
+    "path": "test/test2.md",
+    "content": "This is a test again",
+    "message": "Testing auto-commit"
+}
