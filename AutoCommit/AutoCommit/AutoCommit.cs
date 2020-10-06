@@ -9,6 +9,8 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using AutoCommit.Model.GitHub;
 using System.Collections.Generic;
+using AutoCommit.Model;
+using System.Linq;
 
 namespace AutoCommit
 {
@@ -28,37 +30,33 @@ namespace AutoCommit
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
 
-            var account = (data.account ??= string.Empty).ToString();
-            var repo = (data.repo ??= string.Empty).ToString();
-            var path = (data.path ??= string.Empty).ToString();
-            var content = (data.content ??= string.Empty).ToString();
-            var message = (data.message ??= string.Empty).ToString();
+            var data = JsonConvert.DeserializeObject<CommitData>(requestBody);
 
-            if (string.IsNullOrEmpty(message))
+            if (data == null)
             {
-                message = "Committed by AutoCommit";
+                return new BadRequestObjectResult("No data");
             }
 
-            if (string.IsNullOrEmpty(account))
+            if (string.IsNullOrEmpty(data.Message))
             {
-                return new BadRequestObjectResult("account may not be empty");
+                data.Message = "Committed by AutoCommit";
             }
 
-            if (string.IsNullOrEmpty(repo))
+            if (string.IsNullOrEmpty(data.Account))
             {
-                return new BadRequestObjectResult("repo may not be empty");
+                return new BadRequestObjectResult("Account may not be empty");
             }
 
-            if (string.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(data.Repo))
             {
-                return new BadRequestObjectResult("path may not be empty");
+                return new BadRequestObjectResult("Repo may not be empty");
             }
 
-            if (string.IsNullOrEmpty(content))
+            if (data.Files == null
+                || data.Files.Count == 0)
             {
-                return new BadRequestObjectResult("content may not be empty");
+                return new BadRequestObjectResult("No files to commit");
             }
 
             var token = Environment.GetEnvironmentVariable(GitHubTokenVariableName);
@@ -68,17 +66,18 @@ namespace AutoCommit
                 return new BadRequestObjectResult("GitHub token must be configured in the App Settings");
             }
 
+            var commitFilesData = data.Files
+                .Select(f => (f.Path, f.Content))
+                .ToList();
+
             var helper = new GitHubHelper();
 
             var error = await helper.CommitFiles(
-                account,
-                repo,
+                data.Account,
+                data.Repo,
                 token,
-                message,
-                new List<(string, string)>
-                {
-                    (path, content)
-                });
+                data.Message,
+                commitFilesData);
 
             // TODO Allow function to receive a list of path / content objects
 

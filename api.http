@@ -4,7 +4,15 @@ Content-Type: application/json
 {
     "account": "lbugnion",
     "repo": "tests-auto-commit",
-    "path": "test/test2.md",
-    "content": "This is a test again",
-    "message": "Testing auto-commit"
+    "message": "Testing auto-commit",
+    "files": [
+        {
+            "path": "test/test100.md",
+            "content": "This is test100"
+        },
+        {
+            "path": "test/test101.md",
+            "content": "This is test101"
+        }
+    ]
 }
