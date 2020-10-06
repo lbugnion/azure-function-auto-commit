@@ -1,3 +1,5 @@
+### Local
+
 POST http://localhost:7071/api/autocommit
 Content-Type: application/json
 
@@ -14,6 +16,29 @@ Content-Type: application/json
         {
             "path": "test/test105.md",
             "content": "This is test105"
+        }
+    ]
+}
+
+### Remote
+
+POST https://lbautocommit.azurewebsites.net/api/autocommit
+Content-Type: application/json
+x-functions-key: LdDaDnZ9Pc0U32hlEVCv/npB/HSsItfJE4GcHiB6krAVD/JBDarE9g==
+
+{
+    "account": "lbugnion",
+    "repo": "tests-auto-commit",
+    "branch": "test-branch-01",
+    "message": "Testing auto-commit 106",
+    "files": [
+        {
+            "path": "test/test106.md",
+            "content": "This is test106"
+        },
+        {
+            "path": "test/test107.md",
+            "content": "This is test107"
         }
     ]
 }
