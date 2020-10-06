@@ -13,9 +13,9 @@ namespace AutoCommit.Model.GitHub
     {
         private const string CommitUrl = "git/commits";
         private const string CreateTreeUrl = "git/trees";
-        private const string GetHeadUrl = "git/ref/heads/master";
+        private const string GetHeadUrl = "git/ref/heads/{0}";
         private const string GitHubApiBaseUrlMask = "https://api.github.com/repos/{0}/{1}/{2}";
-        private const string UpdateReferenceUrl = "git/refs/heads/master";
+        private const string UpdateReferenceUrl = "git/refs/heads/{0}";
         private const string UploadBlobUrl = "git/blobs";
 
         // See http://www.levibotelho.com/development/commit-a-file-with-the-github-api/
@@ -23,6 +23,7 @@ namespace AutoCommit.Model.GitHub
         public async Task<string> CommitFiles(
             string accountName,
             string repoName,
+            string branchName,
             string githubToken,
             string commitMessage,
             IList<(string path, string content)> fileNamesAndContent,
@@ -35,7 +36,7 @@ namespace AutoCommit.Model.GitHub
                 GitHubApiBaseUrlMask,
                 accountName,
                 repoName,
-                GetHeadUrl);
+                string.Format(GetHeadUrl, branchName));
 
             log?.LogInformation($"repoName: {repoName}");
             log?.LogInformation($"url: {url}");
@@ -263,7 +264,7 @@ namespace AutoCommit.Model.GitHub
                 GitHubApiBaseUrlMask,
                 accountName,
                 repoName,
-                UpdateReferenceUrl);
+                string.Format(UpdateReferenceUrl, branchName));
 
             request = new HttpRequestMessage
             {

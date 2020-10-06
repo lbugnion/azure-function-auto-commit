@@ -12,6 +12,12 @@ namespace AutoCommit.Model
             set;
         }
 
+        public string Branch
+        {
+            get;
+            set;
+        }
+
         public string Repo
         {
             get;

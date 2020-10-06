@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using AutoCommit.Model.GitHub;
-using System.Collections.Generic;
 using AutoCommit.Model;
 using System.Linq;
 
@@ -17,6 +16,7 @@ namespace AutoCommit
     public static class AutoCommit
     {
         private const string GitHubTokenVariableName = "GitHubToken";
+        private const string DefaultBranchName = "master";
 
         [FunctionName("AutoCommit")]
         public static async Task<IActionResult> Run(
@@ -75,6 +75,7 @@ namespace AutoCommit
             var error = await helper.CommitFiles(
                 data.Account,
                 data.Repo,
+                data.Branch ?? DefaultBranchName,
                 token,
                 data.Message,
                 commitFilesData);
@@ -83,6 +84,11 @@ namespace AutoCommit
 
             if (!string.IsNullOrEmpty(error))
             {
+                if (error.StartsWith("Error getting heads:"))
+                {
+                    return new BadRequestObjectResult($"Branch not found: {data.Branch}");
+                }
+
                 return new BadRequestObjectResult(error);
             }    
 
