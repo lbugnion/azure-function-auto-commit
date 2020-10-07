@@ -14,4 +14,4 @@ To be continued
 
 ### Deploying to Azure
 
-![http://azuredeploy.net/deploybutton.png](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Flbugnion%2Fazure-function-auto-commit%2Fmaster%2FDeploy%2Fautocommit-template.json)
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Flbugnion%2Fazure-function-auto-commit%2Fmaster%2FDeploy%2Fautocommit-template.json)
