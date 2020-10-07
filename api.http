@@ -22,23 +22,23 @@ Content-Type: application/json
 
 ### Remote
 
-POST https://lbautocommit.azurewebsites.net/api/autocommit
+POST https://lbtest007.azurewebsites.net/api/autocommit
 Content-Type: application/json
-x-functions-key: LdDaDnZ9Pc0U32hlEVCv/npB/HSsItfJE4GcHiB6krAVD/JBDarE9g==
+x-functions-key: qY/QfLXaazmDdLsOtzDoQwYr59HZxNH9rQJaAfnl1dXTQ8mjU1ruzA==
 
 {
     "account": "lbugnion",
     "repo": "tests-auto-commit",
     "branch": "test-branch-01",
-    "message": "Testing auto-commit 108",
+    "message": "Testing auto-commit 110",
     "files": [
         {
-            "path": "test/test108.md",
-            "content": "This is test108"
+            "path": "test/test110.md",
+            "content": "This is test110"
         },
         {
-            "path": "test/test109.md",
-            "content": "This is test109"
+            "path": "test/test111.md",
+            "content": "This is test111"
         }
     ]
 }
