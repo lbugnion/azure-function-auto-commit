@@ -77,7 +77,7 @@
                     ],
                     "properties": {
                         "RepoUrl": "https://github.com/lbugnion/azure-function-auto-commit",
-                        "branch": "master",
+                        "branch": "main",
                         "IsManualIntegration": true
                     }
                 }

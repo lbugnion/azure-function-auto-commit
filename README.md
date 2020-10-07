@@ -16,7 +16,7 @@ Click on the button below to open the Azure Resource Manager template dialog.
 
 > You can also right-click and select `Open link in new tab` if you want to keep this page open.
 
-[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Flbugnion%2Fazure-function-auto-commit%2Fmaster%2FDeploy%2Fautocommit-template.json)
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Flbugnion%2Fazure-function-auto-commit%2Fmain%2FDeploy%2Fautocommit-template.json)
 
 You should see the following dialog:
 
