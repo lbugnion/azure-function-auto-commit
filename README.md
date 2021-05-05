@@ -16,7 +16,7 @@ Click on the button below to open the Azure Resource Manager template dialog.
 
 > You can also right-click and select `Open link in new tab` if you want to keep this page open.
 
-[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Flbugnion%2Fazure-function-auto-commit%2Fmaster%2FDeploy%2Fautocommit-template.json)
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/?WT.mc_id=dotnet-0000-lbugnion#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Flbugnion%2Fazure-function-auto-commit%2Fmaster%2FDeploy%2Fautocommit-template.json)
 
 You should see the following dialog:
 
@@ -128,7 +128,7 @@ These instructions will help you to create a GitHub security token if you have n
 
 Normally you need the token only once, when you deploy the function, in the custom ARM template described above. But sometimes you may want to use a new token, for example if the old one was compromised. You can create a new token [following the steps above](#token), then copy the value of the token and follow the steps.
 
-1. Once you have the token, open the [Azure Portal](http://portal.azure.com) and locate your Azure Function. You can use the filter to search for the function's name, or look into the `App Services` category.
+1. Once you have the token, open the [Azure Portal](https://portal.azure.com/?WT.mc_id=dotnet-0000-lbugnion) and locate your Azure Function. You can use the filter to search for the function's name, or look into the `App Services` category.
 
 2. Click on `Configuration`.
 
